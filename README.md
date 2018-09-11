@@ -55,4 +55,4 @@ These three files corresponding to experiments: reid baseline, 4-channel soft/ha
 * This repo also include the codes for evaluating the occlusion in reid task, i.e. `eval_verify.py`, and related list processing files in `utils` dir.
 * The attention map of RGB-soft mask model are displayed below. Four image are taken as a group, in which they are arranged as RGB original image, GCAM visual map, attention map and mask ground truth.
 
-![attention map](vis/soft-mask.png = 250x250)
+![attention map](https://github.com/ChengpengChen/temp/vis/soft-mask.png |width=50)
