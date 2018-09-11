@@ -1,0 +1,95 @@
+#The configuration for training
+
+#setting for data
+p_size: 16
+k_size: 4
+
+gpus: "5"
+
+# settings for optimizer
+optimizer: "adam"
+lr: 0.001
+wd: 0.0005
+lr_step: '80,180'
+
+#settings for data
+dataset: "market"
+crop_size: 128
+
+aug: {
+#  force_resize: [256,128],
+  resize_shorter: 144,  # open when random crop is selected
+  rand_mirror: true,
+  rand_crop: true,
+  random_erasing: false
+}
+
+#settings for model
+#prefix: 'channel_att_rgbm_mask-v1'
+prefix: 'channel_att_rgb_share_0908'
+
+network: "resnet_s16"
+
+model_load_prefix: "resnet-50"  #"models/duke/baseline-s16-erase-2loss-1.0"
+model_load_epoch: 0
+
+begin_epoch: 0
+num_epoch: 300
+
+memonger: false
+
+
+# mask specific setting
+data_type: 'rgb'
+att_input_type: 'rgbm'
+#att_input_type: 'mask'
+mlp_channel_att: True
+att_branch_share: True
+channel_att_enable: True
+spatial_att_enalbe: False
+
+# settings for architecture
+use_gcn: false
+temperature: 0.1
+keep_diag: true
+residual: false
+
+bottleneck_dims: 512
+dropout_ratio: 0.5
+with_relu: false
+
+#settings for loss function
+use_triplet: true
+triplet_margin: 1.0
+
+use_softmax: true
+
+use_pcb: false
+num_parts: 3
+
+triplet_normalization: false
+softmax_weight_normalization: false
+softmax_feat_normalization: false
+norm_scale: 20
+
+
+# specific settings for data set
+
+# duke
+duke: {
+  num_id: 702,
+  data_dir: "/mnt/truenas/scratch/chuanchen.luo/data/reid/DukeMTMC-reID",
+}
+
+# market-1501
+market: {
+  num_id: 751,
+  data_dir: "/home/chencp/dataset/Market-1501-v15.09.15",
+}
+
+# cuhk-03
+cuhk: {
+  num_id: 767,
+  data_dir: "/mnt/truenas/scratch/chuanchen.luo/data/reid/cuhk03-np/labeled",
+}
+

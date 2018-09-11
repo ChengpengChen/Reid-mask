@@ -1,0 +1,99 @@
+#The configuration for training
+
+#setting for data
+p_size: 16
+k_size: 4
+
+gpus: "2"
+
+# settings for optimizer
+optimizer: "adam"
+lr: 0.001
+wd: 0.0005
+lr_step: '80,180'
+
+#settings for data
+dataset: "market"
+crop_size: 128
+
+aug: {
+#  force_resize: [256,128],
+  resize_shorter: 144,  # open when random crop is selected
+  rand_mirror: true,
+  rand_crop: true,
+  random_erasing: false
+}
+
+#settings for model
+#prefix: 'baseline-32x4-softmax-triplet'
+#prefix: 'rgb_baseline-tmp'
+prefix: 'rgbm_baseline_tmp'
+
+network: "resnet_s16"
+
+model_load_prefix: "resnet-50"  #"models/duke/baseline-s16-erase-2loss-1.0"
+model_load_epoch: 0
+#model_load_epoch: 126
+#model_load_prefix: "inception-bn"
+
+begin_epoch: 0
+num_epoch: 300
+
+memonger: false
+
+
+# mask specific setting
+three_streams: True
+data_type: 'rgbm'
+use_inner_triplet: true
+triplet_inner_margin: 1.0
+triplet_inner_weight: 0.5
+soft_mask: true
+mask_weight: 0.05
+softmax_extra_grad_scale: 1.0
+
+# settings for architecture
+use_gcn: false
+temperature: 0.1
+keep_diag: true
+residual: false
+
+bottleneck_dims: 512
+dropout_ratio: 0.5
+with_relu: false
+
+#settings for loss function
+use_triplet: true
+triplet_margin: 1.0
+
+use_softmax: true
+
+use_pcb: false
+num_parts: 3
+
+triplet_normalization: false
+softmax_weight_normalization: true
+softmax_feat_normalization: true
+norm_scale: 20
+
+
+# specific settings for data set
+
+# duke
+duke: {
+  num_id: 702,
+  data_dir: "/mnt/truenas/scratch/chuanchen.luo/data/reid/DukeMTMC-reID",
+}
+
+# market-1501
+market: {
+  num_id: 751,
+  data_dir: "/home/chencp/dataset/Market-1501-v15.09.15",
+}
+
+# cuhk-03
+cuhk: {
+  num_id: 767,
+  data_dir: "/mnt/truenas/scratch/chuanchen.luo/data/reid/cuhk03-np/labeled",
+}
+

@@ -1,0 +1,78 @@
+#The configuration for training
+
+#setting for data
+p_size: 16
+k_size: 4
+
+gpus: "3"
+
+# settings for optimizer
+optimizer: "adam"
+lr: 0.001
+wd: 0.0005
+lr_step: '80,180'
+
+#settings for data
+dataset: "market"
+crop_size: 128
+
+aug: {
+  force_resize: [256,128],
+#  resize_shorter: 144,  # open when random crop is selected
+  rand_mirror: true,
+  rand_crop: false,
+  random_erasing: true
+}
+
+#settings for model
+prefix: 'baseline-16x4-softmax-triplet-erase-0817-v2'
+
+network: "resnet_s16"
+
+model_load_prefix: "pretrain_models/resnet-50"  #"models/duke/baseline-s16-erase-2loss-1.0"
+model_load_epoch: 0
+#model_load_epoch: 126
+#model_load_prefix: "inception-bn"
+
+begin_epoch: 0
+num_epoch: 300
+
+memonger: false
+
+# settings for architecture
+temperature: 0.1
+bottleneck_dims: 512
+dropout_ratio: 0.5
+with_relu: false
+
+#settings for loss function
+use_triplet: true
+triplet_margin: 1.0
+
+use_softmax: true
+
+triplet_normalization: false
+softmax_weight_normalization: true
+softmax_feat_normalization: true
+norm_scale: 20
+
+
+# specific settings for data set
+
+# duke
+duke: {
+  num_id: 702,
+  data_dir: "/mnt/truenas/scratch/chuanchen.luo/data/reid/DukeMTMC-reID",
+}
+
+# market-1501
+market: {
+  num_id: 751,
+  data_dir: "/home/chencp/dataset/Market-1501-v15.09.15",
+}
+
+# cuhk-03
+cuhk: {
+  num_id: 767,
+  data_dir: "/mnt/truenas/scratch/chuanchen.luo/data/reid/cuhk03-np/labeled",
+}

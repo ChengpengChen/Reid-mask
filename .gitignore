@@ -1,0 +1,7 @@
+features
+log
+models
+results
+*.pyc
+*/_pycache_
+.idea
