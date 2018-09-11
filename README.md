@@ -37,13 +37,13 @@ These three files corresponding to experiments: reid baseline, 4-channel soft/ha
 
 * R1 performance with RGB/RGBM input and soft/hard attention
 
-|---|baseline|soft mask|hard mask|
-|RGB|91.1 | 90.9 | 90.9 |
-|RGBM| 92.4 | 92.6 | 92.6 |
+| |baseline|soft mask|hard mask|
+|RGB|91.1|90.9|90.9|
+|RGBM|92.4|92.6|92.6|
 
 
 * R1 performance with spatail and channel attention
 
-|---| baseline | channel | spatial | spatial+channel |
+| | baseline | channel | spatial | spatial+channel |
 |RGB| 91.1 | 91.5 | 90.3 | 91.8 |
 |RGBM| 92.4 | 93.6 | 91.2 | 92.4 |
