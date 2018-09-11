@@ -2,7 +2,7 @@
 
 ---
 
-This repo investigates how to utilize `mask` data in reid task. Several strategies are taken in our experiments, and evaluated on [Market-1501 dataset](http://www.liangzheng.org/Project/project_reid.html). Our baseline is based on a strong baseline [here](https://github.com/L1aoXingyu/reid_baseline).
+This repo investigates how to utilize `mask` data in reid task. Several strategies are taken in our experiments, and evaluated on [Market-1501 dataset](http://www.liangzheng.org/Project/project_reid.html). Our baseline is based on a strong baseline [here](https://github.com/L1aoXingyu/reid_baseline), and use Resnet50 as base model.
 
 Strategies of applying `mask` data:
 
@@ -33,7 +33,7 @@ python train.py/train-mask.py/train-cbam-att.py
 
 These three files corresponding to experiments: reid baseline, 4-channel soft/hard attention and spatial/channel attention. More details can be found in the files and their `.yml` files.
 
-* Then use `eval` to extract features for specific testing set and evaluate the models.
+* Then use `eval.py` to extract features for specific testing set and evaluate the models.
 
 * R1 performance with RGB/RGBM input and soft/hard attention
 
@@ -49,3 +49,10 @@ These three files corresponding to experiments: reid baseline, 4-channel soft/ha
 |---|---|---|---|---|
 |RGB| 91.1 | 91.5 | 90.3 | 91.8 |
 |RGBM| 92.4 | 93.6 | 91.2 | 92.4 |
+
+#### note
+
+* This repo also include the codes for evaluating the occlusion in reid task, i.e. `eval_verify.py`, and related list processing files in `utils` dir.
+* The attention map of RGB-soft mask model are displayed below. Four image are taken as a group, in which they are arranged as RGB original image, GCAM visual map, attention map and mask ground truth.
+
+![attention map](vis/soft-mask.png)
